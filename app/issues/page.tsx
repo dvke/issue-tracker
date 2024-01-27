@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Table } from "@radix-ui/themes";
-import Link from "next/link";
 import prisma from "@/prisma/client";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import delay from "delay";
 import IssueActions from "./IssueActions";
+import Link from "@/app/components/Link";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
@@ -17,10 +17,10 @@ const IssuesPage = async () => {
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className="hidden md:table-cell">
+            <Table.ColumnHeaderCell className="hidden sm:table-cell">
               Status
             </Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className="hidden md:table-cell">
+            <Table.ColumnHeaderCell className="hidden sm:table-cell">
               Created
             </Table.ColumnHeaderCell>
           </Table.Row>
@@ -32,14 +32,14 @@ const IssuesPage = async () => {
               <Table.Cell>
                 <Link href={`issues/${issue.id}`}>{issue.title}</Link>
 
-                <div className="block md:hidden">
+                <div className="block sm:hidden">
                   <IssueStatusBadge status={issue.status} />
                 </div>
               </Table.Cell>
-              <Table.Cell className="hidden md:table-cell">
+              <Table.Cell className="hidden sm:table-cell">
                 <IssueStatusBadge status={issue.status} />
               </Table.Cell>
-              <Table.Cell className="hidden md:table-cell">
+              <Table.Cell className="hidden sm:table-cell">
                 {issue.createdAt.toDateString()}
               </Table.Cell>
             </Table.Row>
