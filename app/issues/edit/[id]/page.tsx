@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import IssueFormSkeleton from "../../_components/IssueFormSkeleton";
+import IssueFormSkeleton from "./laoding";
 
 interface Props {
   params: { id: string };
