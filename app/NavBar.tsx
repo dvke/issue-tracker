@@ -13,6 +13,8 @@ const NavBar = () => {
     { label: "Issues", href: "/issues/list" },
   ];
 
+  console.log(process.env.GOOGLE_CLIENT_ID);
+
   return (
     <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14 ">
       <Link href={"/"}>
