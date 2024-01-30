@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { IoBugSharp } from "react-icons/io5";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import UserMenu from "./components/UserMenu";
+import AuthStatus from "./components/AuthStatus";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -52,7 +52,7 @@ const NavBar = () => {
             </ul>
           </Flex>
           <Box>
-            <UserMenu />
+            <AuthStatus />
           </Box>
         </Flex>
       </Container>
