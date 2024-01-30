@@ -8,7 +8,7 @@ import Skeleton from "react-loading-skeleton";
 const AssigneeSelect = () => {
   const { isPending, error, data: users } = useQuery<User[]>({
     queryKey: ["users"],
-    queryFn: () => axios.get<User[]>("/xapi/users").then((res) => res.data),
+    queryFn: () => axios.get<User[]>("/api/users").then((res) => res.data),
     staleTime: 60 * 1000, //60s
     retry: 3,
   });
