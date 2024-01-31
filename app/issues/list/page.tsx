@@ -7,7 +7,11 @@ import { Issue, Status } from "@prisma/client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 
 interface Props {
-  searchParams: { status: Status; orderBy: keyof Issue };
+  searchParams: {
+    orderDirection: string;
+    status: Status;
+    orderBy: keyof Issue;
+  };
 }
 
 const IssuesPage = async ({ searchParams }: Props) => {
@@ -23,6 +27,9 @@ const IssuesPage = async ({ searchParams }: Props) => {
     : undefined;
   const issues = await prisma.issue.findMany({
     where: { status },
+    orderBy: {
+      [searchParams.orderBy]: searchParams.orderDirection,
+    },
   });
 
   return (
@@ -38,13 +45,24 @@ const IssuesPage = async ({ searchParams }: Props) => {
               >
                 <Link
                   href={{
-                    query: { ...searchParams, orderBy: column.value },
+                    query: {
+                      ...searchParams,
+                      orderBy: column.value,
+                      orderDirection:
+                        searchParams.orderDirection === "asc" ? "desc" : "asc",
+                    },
                   }}
                 >
                   {column.label}
                 </Link>
                 {column.value === searchParams.orderBy && (
-                  <ArrowUpIcon className="inline" />
+                  <ArrowUpIcon
+                    className={`inline transition-all  ${
+                      searchParams.orderDirection === "asc"
+                        ? ""
+                        : "rotate-180 transition-all"
+                    }`}
+                  />
                 )}
               </Table.ColumnHeaderCell>
             ))}
