@@ -1,19 +1,9 @@
 "use client";
-import {
-  Avatar,
-  Box,
-  Container,
-  DropdownMenu,
-  Flex,
-  Text,
-} from "@radix-ui/themes";
+import { Box, Container, Flex } from "@radix-ui/themes";
 import classnames from "classnames";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { IoBugSharp } from "react-icons/io5";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import AuthStatus from "./components/AuthStatus";
 
@@ -32,7 +22,7 @@ const NavBar = () => {
           <Flex align="center" gap="3">
             {" "}
             <Link href={"/"}>
-              <IoBugSharp />
+              <IoBugSharp size={25} />
             </Link>
             <ul className="flex space-x-6">
               {Links.map((link) => (
