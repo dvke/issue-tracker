@@ -6,9 +6,12 @@ import { usePathname } from "next/navigation";
 import { IoBugSharp } from "react-icons/io5";
 import "react-loading-skeleton/dist/skeleton.css";
 import AuthStatus from "./components/AuthStatus";
+import ThemeSwitch from "./components/ThemeSwitch";
+import { useTheme } from "next-themes";
 
 const NavBar = () => {
   const currentPath = usePathname();
+  const { theme } = useTheme();
 
   const Links = [
     { label: "Dashboard", href: "/" },
@@ -29,9 +32,9 @@ const NavBar = () => {
                 <li key={link.href}>
                   <Link
                     className={classnames({
-                      "text-zinc-900": link.href === currentPath,
-                      "text-zinc-500": link.href !== currentPath,
-                      "hover:text-zinc-800 transition colors": true,
+                      "font-bold": link.href === currentPath,
+                      "": link.href !== currentPath,
+                      "hover:text-violet-300 transition-color duration-400": true,
                     })}
                     href={link.href}
                   >
@@ -42,7 +45,10 @@ const NavBar = () => {
             </ul>
           </Flex>
           <Box>
-            <AuthStatus />
+            <Flex align="center" gap="4">
+              <ThemeSwitch />
+              <AuthStatus />
+            </Flex>
           </Box>
         </Flex>
       </Container>

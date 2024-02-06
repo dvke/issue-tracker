@@ -11,14 +11,14 @@ export interface Props {
 
 const IssueChart = ({ open, inProgress, closed }: Props) => {
   const data = [
-    { label: "Open", value: open },
+    { label: "Open Issues", value: open },
     { label: "In-Progress Issues", value: inProgress },
     { label: "Closed Issues", value: closed },
   ];
   return (
     <Card>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
+        <BarChart className="text-sm" data={data}>
           <XAxis dataKey="label" />
           <YAxis />
           <Bar
