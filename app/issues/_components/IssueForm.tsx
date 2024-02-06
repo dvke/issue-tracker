@@ -2,8 +2,8 @@
 import { ErrorMessage, Spinner } from "@/app/components";
 import { issueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Issue } from "@prisma/client";
-import { Button, TextField } from "@radix-ui/themes";
+import { Issue, Status } from "@prisma/client";
+import { Button, Select, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,12 @@ interface Props {
 }
 
 type IssueFormData = z.infer<typeof issueSchema>;
+
+const statuses: { label: String; value?: Status }[] = [
+  { label: "OPEN", value: "OPEN" },
+  { label: "IN_PROGRESS", value: "IN_PROGRESS" },
+  { label: "CLOSED", value: "CLOSED" },
+];
 
 const IssueForm = ({ issue }: Props) => {
   const router = useRouter();
@@ -57,6 +63,28 @@ const IssueForm = ({ issue }: Props) => {
           }
         })}
       >
+        {issue && (
+          <Controller
+            name="status"
+            control={control}
+            defaultValue={issue?.status || ""}
+            render={({ field }) => (
+              <Select.Root
+                value={field.value}
+                onValueChange={(value) => field.onChange(value)}
+              >
+                <Select.Trigger placeholder="Status..." />
+                <Select.Content>
+                  {statuses.map((status) => (
+                    <Select.Item key={status.value} value={status.value!}>
+                      {status.label}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            )}
+          />
+        )}
         <TextField.Root>
           <TextField.Input
             defaultValue={issue?.title}
