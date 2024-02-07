@@ -34,7 +34,7 @@ const NavBar = () => {
                     className={classnames({
                       "font-bold": link.href === currentPath,
                       "": link.href !== currentPath,
-                      "hover:text-black transition-color duration-400": true,
+                      "hover:text-violet-300 transition-color duration-400": true,
                     })}
                     href={link.href}
                   >
