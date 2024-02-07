@@ -1,5 +1,12 @@
-import { Avatar, DropdownMenu, Text } from "@radix-ui/themes";
-import { useSession } from "next-auth/react";
+import {
+  AlertDialog,
+  Avatar,
+  Button,
+  DropdownMenu,
+  Flex,
+  Text,
+} from "@radix-ui/themes";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 
@@ -16,7 +23,7 @@ const AuthStatus = () => {
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
           <Avatar
-            src={session?.user!.image!}
+            src={session!.user!.image!}
             fallback="?"
             size="2"
             radius="full"
@@ -28,9 +35,35 @@ const AuthStatus = () => {
           <DropdownMenu.Label>
             <Text size="2">{session?.user!.email}</Text>
           </DropdownMenu.Label>
-          <DropdownMenu.Item>
-            <Link href={"/api/auth/signout"}>Log out</Link>
-          </DropdownMenu.Item>
+          {/* signout dialog */}
+          <AlertDialog.Root>
+            <AlertDialog.Trigger>
+              <Button variant="outline">Log out</Button>
+            </AlertDialog.Trigger>
+            <AlertDialog.Content>
+              <AlertDialog.Title>Confirm Sign out</AlertDialog.Title>
+              <AlertDialog.Description>
+                Are you sure you want to Sign out?
+              </AlertDialog.Description>
+              <Flex mt="4" gap="3">
+                <AlertDialog.Cancel>
+                  <Button color="gray" variant="soft">
+                    Cancel
+                  </Button>
+                </AlertDialog.Cancel>
+                <AlertDialog.Action>
+                  <Button
+                    color="red"
+                    onClick={() =>
+                      signOut({ callbackUrl: "http://localhost:3000/" })
+                    }
+                  >
+                    Sign Out
+                  </Button>
+                </AlertDialog.Action>
+              </Flex>
+            </AlertDialog.Content>
+          </AlertDialog.Root>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </>
