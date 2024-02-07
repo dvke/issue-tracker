@@ -16,7 +16,7 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
         <Text>{issue.createdAt.toDateString()}</Text>
       </Flex>
       <Card
-        className={`prose max-w-full ${theme === "dark" && "text-zinc-300"}`}
+        className={`prose max-w-full ${theme === "dark" && "text-zinc-400"}`}
         mt="4"
       >
         <ReactMarkdown>{issue.description}</ReactMarkdown>

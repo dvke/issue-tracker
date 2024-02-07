@@ -6,7 +6,7 @@ import {
   Flex,
   Text,
 } from "@radix-ui/themes";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 
@@ -16,7 +16,11 @@ const AuthStatus = () => {
   if (status === "loading")
     return <Skeleton height="2rem" width="2rem" circle={true} />;
   if (status === "unauthenticated")
-    return <Link href={"/api/auth/signin"}>Login</Link>;
+    return (
+      <Button variant="outline" onClick={() => signIn()}>
+        Login
+      </Button>
+    );
 
   return (
     <>
