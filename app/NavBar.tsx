@@ -7,11 +7,9 @@ import { IoBugSharp } from "react-icons/io5";
 import "react-loading-skeleton/dist/skeleton.css";
 import AuthStatus from "./components/AuthStatus";
 import ThemeSwitch from "./components/ThemeSwitch";
-import { useTheme } from "next-themes";
 
 const NavBar = () => {
   const currentPath = usePathname();
-  const { theme } = useTheme();
 
   const Links = [
     { label: "Dashboard", href: "/" },
