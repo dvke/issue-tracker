@@ -10,7 +10,7 @@ export const issueSchema = z.object({
     .string()
     .min(1, "Description is required.")
     .max(65535),
-  status: z.nativeEnum(Status),
+  status: z.nativeEnum(Status).optional(),
 });
 
 export const patchIssueSchema = z.object({
