@@ -2,6 +2,7 @@ import { useState, useEffect, MouseEventHandler } from "react";
 import { useTheme } from "next-themes";
 import { IoMdSunny, IoMdMoon } from "react-icons/io";
 import { Switch } from "@radix-ui/themes";
+import React from "react";
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
