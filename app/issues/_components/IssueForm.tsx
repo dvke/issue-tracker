@@ -73,7 +73,7 @@ const IssueForm = ({ issue }: Props) => {
                 value={field.value}
                 onValueChange={(value) => field.onChange(value)}
               >
-                <Select.Trigger placeholder="Status..." />
+                <Select.Trigger />
                 <Select.Content>
                   {statuses.map((status) => (
                     <Select.Item key={status.value} value={status.value!}>
